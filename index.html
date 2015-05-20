@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta http-equiv="content-language" content="en" />
+		<meta name="author" content="Johan Säll Larsson" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="keywords" content="Google maps, jQuery, plugin, JSON" />
+		<meta name="description" content="An example how to load markers with JSON using jQuery and Google maps v3" />
+		<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+		<meta name="DC.title" content="Example with Google maps, jQuery and JSON - Google maps jQuery plugin" />
+		<meta name="DC.subject" content="Google maps;jQuery;plugin;JSON" />
+		<meta name="DC.description" content="An example how to load markers with JSON using jQuery and Google maps v3" />
+		<meta name="DC.creator" content="Johan Säll Larsson" />
+		<meta name="DC.language" content="en" />
+		<link type="text/css" rel="stylesheet" href="css/960/min/960.css" />
+		<link type="text/css" rel="stylesheet" href="css/960/min/960_16_col.css" />
+		<link type="text/css" rel="stylesheet" href="css/normalize/min/normalize.css" />
+		<link type="text/css" rel="stylesheet" href="css/prettify/min/prettify.css" />
+		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/modernizr-2.0.6/modernizr.min.js"></script>
+		<style>
+#header1 {
+    background-color:#69ADCF;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+
+#footer1 {
+    background-color:#69ADCF;
+    color:white;
+    clear:both;
+    text-align:center;
+   padding:5px;	 	 
+}
+</style>
+    <style type="text/css">
+      #google_map {width: 550px; height: 450px;margin-top:50px;margin-left:auto;margin-right:auto;}
+    </style>
+    <script type="text/javascript"
+     src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDajeTAHAafWESv3Qzm805zley8z6Y9w-4&sensor=false">
+    </script>
+    <script type="text/javascript">
+
+
+var mapIsb=new google.maps.LatLng(33.6566398,73.0165118);
+var mapKhr=new google.maps.LatLng(24.8635045,67.2173113);
+var mapLhr=new google.maps.LatLng(31.4810656,74.3047827);
+var mapPwr=new google.maps.LatLng(33.980465,71.427183); //Google map Coordinates
+      var map
+      function initialize() //function initializes Google map
+      {
+        var googleMapOptions =
+        {
+            center: mapIsb, // map center
+            zoom: 15, //zoom level, 0 = earth view to higher value
+            panControl: true, //enable pan Control
+            zoomControl: true, //enable zoom control
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL //zoom control size
+             },
+            scaleControl: true, // enable scale control
+            mapTypeId: google.maps.MapTypeId.ROADMAP // google map type
+        };
+        map = new google.maps.Map(document.getElementById("google_map"), googleMapOptions);
+      }
+
+        function addIsbMarker() { //function that will add markers on button click
+            var marker = new google.maps.Marker({
+                position:mapIsb,
+                map: map,
+                  draggable:true,
+                  animation: google.maps.Animation.DROP,
+                title:"This a new marker!",
+              icon: "http://maps.google.com/mapfiles/ms/micons/blue.png"
+            });
+        }
+
+        function addKhrMarker() { //function that will add markers on button click
+            var marker = new google.maps.Marker({
+                position:mapKhr,
+                map: map,
+                  draggable:true,
+                  animation: google.maps.Animation.DROP,
+                title:"This a new marker!",
+              icon: "http://maps.google.com/mapfiles/ms/micons/blue.png"
+            });
+        }
+
+        function addLhrMarker() { //function that will add markers on button click
+            var marker = new google.maps.Marker({
+                position:mapLhr,
+                map: map,
+                  draggable:true,
+                  animation: google.maps.Animation.DROP,
+                title:"This a new marker!",
+              icon: "http://maps.google.com/mapfiles/ms/micons/blue.png"
+            });
+        }
+
+        function addPwrMarker() { //function that will add markers on button click
+            var marker = new google.maps.Marker({
+                position:mapPwr,
+                map: map,
+                  draggable:true,
+                  animation: google.maps.Animation.DROP,
+                title:"This a new marker!",
+              icon: "http://maps.google.com/mapfiles/ms/micons/blue.png"
+            });
+        }
+    </script>
+
+	
+	<!-- Include meta tag to ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Include jQuery Mobile stylesheets -->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	
+	<!-- Include the jQuery library -->
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	
+	<!-- Include the jQuery Mobile library -->
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+	<style>
+		img {
+		display: inline-block;
+		}
+	</style>
+	
+	<title>SHOPENER</title>
+<head>
+<body onLoad="initialize()">
+	<div data-role="page" id="page">
+		<div data-role="header" id="header1">
+			<h1><img src="logo.png" align="left" height="50px" width="50px"><font align="left" color="Black" size="35">SHOPENER</font></h1>
+		</div>
+		<div data-role="ui-content">
+			<div data-role="main" class="ui-content">
+				<div data-role="collapsible">
+					<h1>Locations</h1>
+					<div data-role="collapsible">
+						<h2>Islamabad</h2>
+						<ul data-role="listview">
+							<li><a href="#pageG9">G-9</a></li>
+							<li><a href="#pageG10">G-10</a></li>
+							<li><a href="#pageF9">F-9</a></li>
+							<li><a href="#pageF10">F-10</a></li>
+						</ul>
+					</div>
+					<div data-role="collapsible">
+						<h2>Lahore</h2>
+						<ul data-role="listview">
+							<li><a href="#pageGulberg">Gulberg</a></li>
+							<li><a href="#pageDefence">Defence</a></li>
+							<li><a href="#pageFortressStadium">Fortress Stadium</a></li>
+							<li><a href="#pageShahraheQuaideAzam">Shahrah-e-Quaide-Azam</a></li>
+						</ul>
+					</div>
+					<div data-role="collapsible">
+						<h2>Karachi</h2>
+						<ul data-role="listview">
+							<li><a href="#pageClifton">Clifton</a></li>
+							<li><a href="#pageNazimabad">North Nazimabad</a></li>
+							<li><a href="#pageDHA">D.H.A.</a></li>
+							<li><a href="#pageKhayabaneShujaat">Khayaban-e-Shujaat</a></li>
+						</ul>
+					</div>
+					<div data-role="collapsible">
+						<h2>Peshawar</h2>
+						<ul data-role="listview">
+							<li><a href="#pageFortBalaHisar">Fort Bala Hisar</a></li>
+							<li><a href="#pageHayatabad">Hayatabad</a></li>
+							<li><a href="#pageChowkYadgar">Chowk Yadgar</a></li>
+							<li><a href="#pageKarkhanoBazar">Karkhano Bazar</a></li>
+						</ul>
+					</div>	
+				</div>
+				<div data-role="collapsible">
+					<h1>Category</h1>
+					<ul data-role="listview">
+						<li><a href="#pageBusiness">Business</a></li>
+						<li><a href="#pageElectrical">Electrical Appliances</a></li>
+						<li><a href="#pageMedical">Medical Stores</a></li>
+						<li><a href="#pageDialyGoods">Dialy Goods</a></li>
+						<li><a href="#pageProperty">Property Dealers</a></li>
+						<li><a href="#pageIT">IT</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+		
+	
+	
+	<div data-role="page" id="pageG9">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Islamabad</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>		
+	
+	<div data-role="page" id="pageG10">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Islamabad</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+		<div data-role="page" id="pageF9">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Islamabad</h1>
+		</div>
+			<div data-role="ui-content">
+				<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+			</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+	<div data-role="page" id="pageF10">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Islamabad</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	
+	
+	<div data-role="page" id="pageGulberg">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Lahore</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>		
+	
+	<div data-role="page" id="pageDefence">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Lahore</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+		<div data-role="page" id="pageFortressStadium">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Lahore</h1>
+		</div>
+			<div data-role="ui-content">
+				<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+			</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+	<div data-role="page" id="pageShahraheQuaideAzam">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Lahore</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	
+	
+	
+		<div data-role="page" id="pageClifton">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Karachi</h1>
+		</div>
+			<div data-role="ui-content">
+				<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+			</div>
+
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>		
+	
+	<div data-role="page" id="pageNazimabad">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Karachi</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+		<div data-role="page" id="pageDHA">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Karachi</h1>
+		</div>
+			<div data-role="ui-content">
+				<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+			</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+	<div data-role="page" id="pageKhayabaneShujaat">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Karachi</h1>
+		</div>
+
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+	
+	
+	
+
+		
+	<div data-role="page" id="pageFortBalaHisar">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Peshawar</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>		
+	
+	<div data-role="page" id="pageHayatabad">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Peshawar</h1>
+		</div>
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+		<div data-role="page" id="pageChowkYadgar">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Peshawar</h1>
+		</div>
+			<div data-role="ui-content">
+				<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+			</div>
+
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+	<div data-role="page" id="pageKarkhanoBazar">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Peshawar</h1>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Peshawar</h1>
+		</div>
+
+		<div data-role="ui-content">
+			<p align="center"><a href="geo:33.6566398,73.0165118?z=11&q=FAST+National+University+of+Computer+and+Emerging+Sciences+Islamabad">Islamabad</a></p>
+		</div>
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div data-role="page" id="pageBusiness">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Electrical Appliances</h1>
+		</div>
+		<div class="container_16">
+			<p align="center"> All Busniesses Do Here </p>
+			<article class="grid_16">
+				<div class="item rounded dark">
+					<div id="map_canvasBusiness" class="map rounded"></div>
+				</div>
+			</article>
+		</div>
+			
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	
+	
+	<div data-role="page" id="pageElectrical">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Electrical Appliances</h1>
+		</div>
+		<div class="container_16">
+			<p align="center"> All Electrical Appliances Here </p>
+			<article class="grid_16">
+				<div class="item rounded dark">
+					<div id="map_canvasElectrical" class="map rounded"></div>
+				</div>
+			</article>
+		</div>
+			
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	<div data-role="page" id="pageMedical">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Electrical Appliances</h1>
+		</div>
+		<div class="container_16">
+			<p align="center"> Medical Equipment Are Here </p>
+			<article class="grid_16">
+				<div class="item rounded dark">
+					<div id="map_canvasMedical" class="map rounded"></div>
+				</div>
+			</article>
+		</div>
+			
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	<div data-role="page" id="pageDialyGoods">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Electrical Appliances</h1>
+		</div>
+		<div class="container_16">
+			<p align="center"> Daily Routine Goods Are Here </p>
+			<article class="grid_16">
+				<div class="item rounded dark">
+					<div id="map_canvasDailyGoods" class="map rounded"></div>
+				</div>
+			</article>
+		</div>
+			
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	<div data-role="page" id="pageProperty">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Electrical Appliances</h1>
+		</div>
+		<div class="container_16">
+			<p align="center"> Property Dealers Here </p>
+			<article class="grid_16">
+				<div class="item rounded dark">
+					<div id="map_canvasProperty" class="map rounded"></div>
+				</div>
+			</article>
+		</div>
+			
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+	<div data-role="page" id="pageIT">
+		<div data-role="header" id="header1">
+			
+			<a href="#page" class="ui-btnui-icon-home ui-btn-icon-left">Home</a>
+			<h1><img src="logo.png" align="left" height="50px" width="50px">Electrical Appliances</h1>
+		</div>
+		<div class="container_16">
+			<p align="center"> We Deals with The Software Tech. </p>
+			<article class="grid_16">
+				<div class="item rounded dark">
+					<div id="map_canvasIT" class="map rounded"></div>
+				</div>
+			</article>
+		</div>
+			
+		<div data-role="footer" id="footer1">
+			<h4>All rights reserved</h4>
+		</div>
+	</div>
+
+	
+</body>
+</html>
+
+
+
+
